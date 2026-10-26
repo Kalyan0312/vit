@@ -1,0 +1,594 @@
+:root {
+  --bg-space: #050811;
+  --bg-primary: #0a0f1d;
+  --bg-surface: #0f172a;
+  --bg-surface-elevated: #162238;
+  --bg-card: rgba(15, 23, 42, 0.85);
+  --bg-card-hover: rgba(22, 34, 56, 0.95);
+  
+  --border-subtle: rgba(56, 189, 248, 0.12);
+  --border-medium: rgba(56, 189, 248, 0.25);
+  --border-strong: rgba(56, 189, 248, 0.45);
+  
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-dark: #0f172a;
+
+  --accent-cyan: #38bdf8;
+  --accent-cyan-dark: #0284c7;
+  --accent-cyan-glow: rgba(56, 189, 248, 0.25);
+
+  --accent-green: #10b981;
+  --accent-green-dark: #059669;
+  --accent-green-glow: rgba(16, 185, 129, 0.25);
+
+  --accent-amber: #f59e0b;
+  --accent-amber-glow: rgba(245, 158, 11, 0.25);
+
+  --accent-coral: #ef4444;
+  --accent-coral-glow: rgba(239, 68, 68, 0.25);
+
+  --accent-purple: #a855f7;
+  --accent-purple-glow: rgba(168, 85, 247, 0.25);
+
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px -4px rgba(0, 0, 0, 0.5);
+  --shadow-glow-cyan: 0 0 25px rgba(56, 189, 248, 0.2);
+  --shadow-glow-green: 0 0 25px rgba(16, 185, 129, 0.2);
+
+  /* Standard Desktop Typography Scale */
+  --fs-page-title: 34px;        /* 34px, font-weight 700 - Main Page Titles */
+  --fs-major-heading: 26px;     /* 26px - Major Section Headings */
+  --fs-card-heading: 21px;      /* 21px - Card and Panel Headings */
+  --fs-battery-heading: 22px;   /* 22px - Battery Panel Heading */
+  --fs-kpi-value: 38px;         /* 38px - KPI Numerical Values */
+  --fs-kpi-label: 17px;         /* 17px - KPI Labels */
+  --fs-body: 17px;              /* 17px - Body Text & Descriptions */
+  --fs-body-sm: 15.5px;         /* 15.5px - Supporting metrics & Secondary info */
+  --fs-sidebar-brand: 23px;     /* 23px - GridWise Brand Name */
+  --fs-sidebar-nav: 18px;       /* 18px - Sidebar Navigation */
+  --fs-btn: 16px;               /* 16px - Buttons, Filters, Layer Toggles */
+  --fs-btn-run: 17px;           /* 17px - Run Simulation Button */
+  --fs-input: 16px;             /* 16px - Form Labels & Inputs */
+  --fs-map-label: 16px;         /* 16px - Building & Map Asset Labels */
+  --fs-inspector-heading: 22px; /* 22px - Building Inspector Headings */
+  --fs-inspector-metric: 17px;  /* 17px - Inspector Metrics & Battery Metrics */
+  --fs-table: 16px;             /* 16px - Table Content & Chart Labels */
+  --fs-legend: 15px;            /* 15px - Energy Status & Feeder Groups Legends */
+  --fs-status-label: 15px;      /* 15px - Status Labels */
+  --fs-badge: 14px;             /* 14px - Navigation Badges */
+  --fs-meta: 13.5px;            /* 13.5px - Meta text (never < 12px) */
+
+  /* Legacy alias mappings for backwards compatibility */
+  --fs-page-heading: var(--fs-page-title);
+  --fs-section-heading: var(--fs-major-heading);
+}
+
+html {
+  font-size: 18.5px;
+  -webkit-text-size-adjust: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  background-color: var(--bg-space);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(16, 185, 129, 0.04) 0%, transparent 40%);
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Typography Utility */
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Glassmorphism Card Utility */
+.glass-panel {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.glass-panel:hover {
+  border-color: var(--border-medium);
+}
+
+.glass-panel-elevated {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+/* Badges (Target: 13-14px) */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-badge);
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.badge-critical {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.35);
+}
+
+.badge-essential {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+.badge-standard {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.badge-success {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+/* Buttons (Target: 15-17px) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--fs-btn);
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  user-select: none;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-cyan-dark));
+  color: #04101e;
+  border: 1px solid rgba(56, 189, 248, 0.6);
+  box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #7dd3fc, var(--accent-cyan));
+  box-shadow: 0 6px 20px rgba(56, 189, 248, 0.45);
+}
+
+.btn-green {
+  background: linear-gradient(135deg, var(--accent-green), var(--accent-green-dark));
+  color: #022013;
+  border: 1px solid rgba(16, 185, 129, 0.6);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+}
+
+.btn-green:hover {
+  background: linear-gradient(135deg, #34d399, var(--accent-green));
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
+}
+
+.btn-secondary {
+  background: rgba(30, 41, 59, 0.7);
+  color: var(--text-primary);
+  border: 1px solid var(--border-medium);
+}
+
+.btn-secondary:hover {
+  background: rgba(51, 65, 85, 0.8);
+  border-color: var(--border-strong);
+  color: #fff;
+}
+
+.btn-danger {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.35);
+}
+
+.btn-danger:hover {
+  background: rgba(239, 68, 68, 0.25);
+  border-color: #ef4444;
+}
+
+/* ─── Text Animation Keyframes ──────────────────────────────────────── */
+
+/* Heading / section title fade-in + slide-up */
+@keyframes heading-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* KPI value flip / count-up feel */
+@keyframes kpi-value-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.96);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* Status badge / label color morph */
+@keyframes status-fade-in {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Spin (used by RefreshCw icon during simulation) */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Subtle shimmer sweep for active stage description */
+@keyframes shimmer-slide {
+  from { background-position: -200% 0; }
+  to   { background-position: 200% 0; }
+}
+
+/* Pulse / Live Indicator Animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.9);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 12px rgba(239, 68, 68, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+@keyframes pulse-cyan-ring {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(56, 189, 248, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(56, 189, 248, 0);
+  }
+}
+
+@keyframes sim-progress-sweep {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.critical-outage-pulse {
+  animation: pulse-ring 1.8s infinite ease-in-out;
+}
+
+.bess-charging-pulse {
+  animation: pulse-cyan-ring 2s infinite ease-in-out;
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 10px currentColor;
+  animation: pulse-glow 2s infinite ease-in-out;
+}
+
+/* Animated flow lines for SVG grid twin */
+@keyframes dash-flow {
+  from {
+    stroke-dashoffset: 40;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.feeder-flow-active {
+  stroke-dasharray: 6 6;
+  animation: dash-flow 1.2s linear infinite;
+}
+
+.feeder-flow-reverse {
+  stroke-dasharray: 6 6;
+  animation: dash-flow 1.2s linear infinite reverse;
+}
+
+/* Input range styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  background: #1e293b;
+  border-radius: 3px;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+  border: 2px solid #0f172a;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  background: #7dd3fc;
+}
+
+/* Tooltips (Target: 13-14px) */
+.recharts-default-tooltip {
+  background-color: rgba(15, 23, 42, 0.95) !important;
+  border: 1px solid rgba(56, 189, 248, 0.3) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-md) !important;
+  padding: 10px 14px !important;
+  color: #f8fafc !important;
+  font-family: var(--font-sans) !important;
+}
+
+.recharts-tooltip-item {
+  color: #e2e8f0 !important;
+  font-size: var(--fs-badge) !important;
+  font-family: var(--font-mono) !important;
+}
+
+/* Global Form Inputs (Target: 15-16px) */
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  font-family: var(--font-sans);
+  font-size: var(--fs-input);
+}
+
+/* Global Table Typography (Target: 14-16px) */
+table th {
+  font-size: var(--fs-table);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+table td {
+  font-size: var(--fs-table);
+}
+
+/* Responsive Grid layouts */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .metrics-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─── Standardized Content Typography ───────────────────────────────── */
+h1, .page-title {
+  font-size: var(--fs-page-title);
+  font-weight: 700;
+}
+
+h2, .section-heading {
+  font-size: var(--fs-major-heading);
+  font-weight: 700;
+}
+
+h3, .card-heading {
+  font-size: var(--fs-card-heading);
+  font-weight: 600;
+}
+
+p, .body-text {
+  font-size: var(--fs-body);
+}
+
+.status-label {
+  font-size: var(--fs-status-label);
+}
+
+.legend-text {
+  font-size: var(--fs-legend);
+}
+
+/* Recharts Typography */
+.recharts-legend-item-text {
+  font-size: 14.5px !important;
+}
+.recharts-cartesian-axis-tick text {
+  font-size: 13.5px !important;
+}
+.recharts-default-tooltip {
+  font-size: 15px !important;
+}
+.recharts-tooltip-item {
+  font-size: 14.5px !important;
+}
+
+/* Global Table & Input Typography */
+table th {
+  font-size: var(--fs-table) !important;
+  font-weight: 600;
+  padding: 12px 16px;
+}
+
+table td {
+  font-size: var(--fs-table) !important;
+  padding: 10px 16px;
+}
+
+input, select, textarea {
+  font-size: var(--fs-input);
+}
+
+/* ─── Desktop Typography Utilities ──────────────────────────────────── */
+
+.heading-enter {
+  animation: heading-enter 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.kpi-value-animate {
+  animation: kpi-value-in 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.status-animate {
+  animation: status-fade-in 0.22s ease both;
+}
+
+/* Simulation banner animated shimmer border */
+.sim-banner-running {
+  position: relative;
+  overflow: hidden;
+}
+.sim-banner-running::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(56, 189, 248, 0.15) 45%,
+    rgba(56, 189, 248, 0.3) 50%,
+    rgba(56, 189, 248, 0.15) 55%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer-slide 1.6s linear infinite;
+  pointer-events: none;
+}
+
+/* Stage description fade-in */
+@keyframes stage-desc-fade {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.stage-desc-animate {
+  animation: stage-desc-fade 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Accessibility: respect user's reduced-motion OS preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
